@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Description" content="Регулярные упражнения для глаз при работе за компьютером.">
+ 	<title>Eyexercise</title>
+
+	<link rel="icon" href="http://glaz.freetonik.com/favicon.ico">
+	<style type="text/css">
+		body {
+		    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		    font-weight: 300;
+		    text-align: center;
+		    -moz-transition:background-color 2s; /* Firefox 4 */
+		    -webkit-transition:background-color 2s; /* Safari and Chrome */
+		    -o-transition:background-color 2s; /* Opera */
+		    transition:background-color 2s;
+		}
+
+		#yes { color: black; }
+
+		#wrapper {
+		    margin-top: 25px;
+		    width: 419px;
+		    min-width: 419px;
+		    margin-left:auto;
+		    margin-right:auto;
+		}
+
+		#eye {
+		    width: 419px;
+		    height: 308px;
+		}
+
+		#eyehorus{ margin-top: 100px; }
+
+		#text { margin-top: 30px; }
+
+		#speaker_icon {
+		    margin-top:35px;
+		    filter: alpha(opacity=40);
+		    -moz-opacity:0.4;
+		    -khtml-opacity: 0.4;
+		    opacity: 0.4;
+		    -moz-transition: opacity 1s;
+		    -webkit-transition: opacity 1s;
+		    -o-transition: opacity 1s;
+		    transition: opacity 1s;
+		}
+
+		#speaker_icon:hover {
+		    filter: alpha(opacity=100);
+		    -moz-opacity:1;
+		    -khtml-opacity: 1;
+		    opacity: 1;
+		}
+
+		#instructions { margin-bottom: 65px; }
+
+		#timer { font-size: 66px; }
+
+		#seconds, #repeatfor, #speaker_icon, #eyexercise { display:none; }
+
+		#settings {
+		    display:none;
+		    margin-top: 5px;
+		    padding: 7px 7px 7px 7px;
+		    background-color: #F9F6F4;
+		}
+
+		#sound0 { font-weight: 900; }
+
+		#volumeSlider { margin-top: 10px; }
+
+		:root .addthis_toolbox { display:none !important; }
+	</style>
+	<script src="./js/script.js"></script>
+	<script src="./js/slider.js"></script>
+</head>
+
+<body onload="load()">
+	<div id="wrapper">
+
+		<audio id="speaker_alert" preload="auto">
+			<source src="./sounds/alert.mp3">
+			<source src="./sounds/alert.ogg">
+			<source src="./sounds/alert.wav">
+			<small>Ваш браузер не поддерживает звуки! Ну, это не так важно :)</small>
+		</audio>
+
+		<audio id="speaker_flute" preload="none">
+			<source src="./sounds/alert2.mp3">
+			<source src="./sounds/alert2.ogg">
+			<source src="./sounds/alert2.wav">
+		</audio>
+
+		<audio id="speaker_athmo" preload="none">
+			<source src="./sounds/athmo.mp3">
+			<source src="./sounds/athmo.ogg">
+			<source src="./sounds/athmo.wav">
+		</audio>
+
+		<audio id="speaker_harp" preload="none">
+			<source src="./sounds/harp.mp3">
+			<source src="./sounds/harp.ogg">
+			<source src="./sounds/harp.wav">
+		</audio>
+
+		<audio id="speaker_evilaugh" preload="none">
+			<source src="./sounds/evilaugh.mp3">
+			<source src="./sounds/evilaugh.ogg">
+			<source src="./sounds/evilaugh.wav">
+		</audio>
+
+		<div id="eye">
+			<img id="eyehorus" src="./images/logo_eye.png" alt="eyexercise">
+			<div id="eyexercise">
+				<h1 id="instructions"></h1>
+				<h2 id="repeatfor">повторяйте</h2>
+				<h1 id="timer"></h1>
+				<h2 id="seconds">секунд</h2>
+			</div>
+		</div>
+
+		<div id="text">
+			В начале каждого часа прозвучит <a href="javascript:playSound();">такой</a> сигнал и начнётся 5-минутное упражнение для глаз. <br> <br> Подождите <span id="countdown">52</span> минут или <a href="javascript:toggleExerciseView();">начните</a> прямо сейчас.
+		</div>
+
+
+		<div id="speaker_icon">
+			<a href="javascript:toggleSettings()"><img src="./images/speaker_icon.png"></a>
+		</div>
+
+		<div id="settings">
+			<a href="javascript:setAudio(0);"><span id="sound0">небеса</span></a>, <a href="javascript:setAudio(1);"><span id="sound1">флейта</span></a>, <a href="javascript:setAudio(2);"><span id="sound2">атмо</span></a>, <a href="javascript:setAudio(3);"><span id="sound3">гармоника</span></a>, <a href="javascript:setAudio(4);"><span id="sound4">смех</span></a> <br><input id="volumeSlider" onchange="volumeChange(this)" type="range" min="0" max="10" value="10">
+			<br><label for="intervalBetween">Интервал</label><input id="intervalBetween" name="intervalBetween" type="number" min="0" value="45" onchange="intervalChange(this)">
+		</div>
+
+	</div>
+
+
+</body>
+</html>
