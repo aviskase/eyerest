@@ -44,7 +44,7 @@ function toggleExerciseView() {
     timer = document.getElementById('timer');
     text = document.getElementById('text');
     secondsText = document.getElementById('seconds');
-    speaker_icon = document.getElementById('speaker_icon');
+    speaker_icon = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
 
     if(eyeOfHorus.style.display == "none") {
