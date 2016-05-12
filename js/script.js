@@ -2,25 +2,24 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 2;              //mini exercise, seconds
-var midi = 2;              //medium exercise, seconds
-var maxi = 2;              //long exercise, seconds
+var mini = 30;              //mini exercise, seconds
+var midi = 45;              //medium exercise, seconds
+var maxi = 60;              //long exercise, seconds
 
 
 function blinkFavicon () {
   favicon = document.getElementsByTagName ('link') [0];
   head = document.getElementsByTagName ('head') [0];
-  url1 = 'http://eye.freetonik.com/favicon.ico';
-  url2 = 'http://eye.freetonik.com/favicon_alarm.ico';
+  url1 = './css/favicon.ico';
+  url2 = './css/favicon_alarm.ico';
   title1 = 'Эй!';
   title2 = 'Сюда!';
   document.title = (document.title==title1) ? title2 : title1;
-  n = document.createElement ("link");
-  n.setAttribute ('href', (favicon.href==url1) ? url2 : url1);
-  n.setAttribute ('type', 'image/x-icon');
-  n.setAttribute ('rel', 'shortcut icon');
-  head.removeChild (favicon); head.appendChild (n);
-  head.appendChild (n);
+  // if (favicon.href.indexOf("alarm") != -1) {
+  //   favicon.setAttribute('href', favicon.href.replace("favicon_alarm", "favicon"));
+  // } else {
+  //   favicon.setAttribute('href', favicon.href.replace("favicon", "favicon_alarm"));
+  // }
 }
 
 function load() {
@@ -69,10 +68,10 @@ function toggleExerciseView() {
         settings.style.display = "none";
         clearInterval();
         playSound();
-        favicTimer = setInterval(blinkFavicon, 500);
+        favicTimer = setInterval(blinkFavicon, 1000);
         document.bgColor = "#ecf0f1";
         instructions.innerHTML = "Готовы начать?";
-        timer.innerHTML = "<a id='yes' class='button button-outline' href='javascript:readyToGo()'>Да</a>";
+        timer.innerHTML = "<a id='yes' class='button button-outline button-big' href='javascript:readyToGo()'>Да</a>";
     }
 }
 
