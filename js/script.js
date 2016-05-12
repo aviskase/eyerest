@@ -2,11 +2,10 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 3;              //mini exercise, seconds
-var midi = 5;              //medium exercise, seconds
-var maxi = 7;              //long exercise, seconds
+var mini = 2;              //mini exercise, seconds
+var midi = 2;              //medium exercise, seconds
+var maxi = 2;              //long exercise, seconds
 
-//https://flatuicolors.com/
 
 function blinkFavicon () {
   favicon = document.getElementsByTagName ('link') [0];
@@ -29,7 +28,7 @@ function load() {
     setInterval('updateCountdown()', 1000 * 60 );
     document.getElementById('countdown').innerHTML = minutesLeft;
     document.getElementById('settings').style.display = "none";
-    document.getElementById('settings-toggle').style.display = "block";
+    document.getElementById('eyexercise').style.display = "none";
 }
 
 function updateCountdown() {
@@ -49,8 +48,9 @@ function toggleExerciseView() {
     timer = document.getElementById('timer');
     text = document.getElementById('text');
     secondsText = document.getElementById('seconds');
+    repeatText = document.getElementById('repeatfor');
     start = document.getElementById('start');
-    speaker_icon = document.getElementById('settings-toggle');
+    settings_toggle = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
 
     if(eyeOfHorus.style.display == "none") {
@@ -61,9 +61,11 @@ function toggleExerciseView() {
     else {
         eyeOfHorus.style.display = "none";
         eyExercise.style.display = "block";
+        secondsText.style.display = "none";
+        repeatText.style.display = "none";
         text.style.display = "none";
         start.style.display = "none";
-        speaker_icon.style.display = "none";
+        settings_toggle.style.display = "none";
         settings.style.display = "none";
         clearInterval();
         playSound();
@@ -78,6 +80,7 @@ function readyToGo() {
     clearInterval(favicTimer);
     document.bgColor = "#FFF176";
     document.getElementById('seconds').style.display = "block";
+    document.getElementById('repeatfor').style.display = "block";
     instructions.innerHTML = "1/7. Моргайте быстро-быстро";
     timer.innerHTML = mini;
     // tick timer each sec
@@ -133,6 +136,7 @@ function tickMainTimer() {
                 document.bgColor = "#9575CD";
                 instructions.innerHTML = "Вы молодец!"
                 timer.innerHTML = "3";
+                document.getElementById('repeatfor').style.display = "none";
                 break;
             case 8:
                 window.location.reload();

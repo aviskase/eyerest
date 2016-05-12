@@ -6,7 +6,7 @@
 
 body {
     font-family: sans-serif;
-    color: #526475;
+    color: #2c3e50;
 }
 
 .section {
@@ -21,7 +21,8 @@ body {
 #eye {
     margin-top: 5em;
 }
-#seconds, #repeatfor, #eyexercise { display:none; }
+
+// #seconds, #repeatfor, #eyexercise { display:none; }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
