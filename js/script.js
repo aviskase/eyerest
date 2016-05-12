@@ -2,6 +2,11 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
+var mini = 3;              //mini exercise, seconds
+var midi = 5;              //medium exercise, seconds
+var maxi = 7;              //long exercise, seconds
+
+//https://flatuicolors.com/
 
 function blinkFavicon () {
   favicon = document.getElementsByTagName ('link') [0];
@@ -24,7 +29,7 @@ function load() {
     setInterval('updateCountdown()', 1000 * 60 );
     document.getElementById('countdown').innerHTML = minutesLeft;
     document.getElementById('settings').style.display = "none";
-    document.getElementById('speaker_icon').style.display = "block";
+    document.getElementById('settings-toggle').style.display = "block";
 }
 
 function updateCountdown() {
@@ -44,6 +49,7 @@ function toggleExerciseView() {
     timer = document.getElementById('timer');
     text = document.getElementById('text');
     secondsText = document.getElementById('seconds');
+    start = document.getElementById('start');
     speaker_icon = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
 
@@ -56,23 +62,24 @@ function toggleExerciseView() {
         eyeOfHorus.style.display = "none";
         eyExercise.style.display = "block";
         text.style.display = "none";
+        start.style.display = "none";
         speaker_icon.style.display = "none";
         settings.style.display = "none";
         clearInterval();
         playSound();
         favicTimer = setInterval(blinkFavicon, 500);
-        document.bgColor = "#FFF5C3";
+        document.bgColor = "#ecf0f1";
         instructions.innerHTML = "Готовы начать?";
-        timer.innerHTML = "<a id='yes' href='javascript:readyToGo()'>Да</a>";
+        timer.innerHTML = "<a id='yes' class='button button-outline' href='javascript:readyToGo()'>Да</a>";
     }
 }
 
 function readyToGo() {
     clearInterval(favicTimer);
-    document.bgColor = "#FFFFC3";
+    document.bgColor = "#FFF176";
     document.getElementById('seconds').style.display = "block";
     instructions.innerHTML = "1/7. Моргайте быстро-быстро";
-    timer.innerHTML = "30";
+    timer.innerHTML = mini;
     // tick timer each sec
     setInterval('tickMainTimer()', 1000);
 }
@@ -87,45 +94,45 @@ function tickMainTimer() {
         switch (step) {
             case 1:
                 playSound();
-                document.bgColor = "#D3E397";
+                document.bgColor = "#FFD54F";
                 instructions.innerHTML = "2/7. Крепко зажмурьтесь на пару секунд, а потом откройте глаза на пару секунд";
-                timer.innerHTML = "30";
+                timer.innerHTML = mini;
                 break;
             case 2:
                 playSound();
-                document.bgColor = "#8DCDC1";
+                document.bgColor = "#FFB74D";
                 instructions.innerHTML = "3/7. Вращайте глазные яблоки, один оборот – по часовой стрелке, другой – против";
-                timer.innerHTML = "45";
+                timer.innerHTML = midi;
                 break;
             case 3:
                 playSound();
-                document.bgColor = "#CD8D99";
+                document.bgColor = "#FF8A65";
                 instructions.innerHTML = "4/7. Двигайте глазные яблоки вверх-вниз, влево-вправо";
-                timer.innerHTML = "45";
+                timer.innerHTML = midi;
                 break;
             case 4:
                 playSound();
-                document.bgColor = "#7C786A";
+                document.bgColor = "#e57373";
                 instructions.innerHTML = "5/7. Легко нажмите на верхнее веко тремя пальцами на пару секунд, потом отпустите на пару секунд"
-                timer.innerHTML = "45"
+                timer.innerHTML = midi;
                 break;
             case 5:
                 playSound();
-                document.bgColor = "#FFF5C3";
+                document.bgColor = "#F06292";
                 instructions.innerHTML = "6/7. Сфокусируйте взгляд на отдаленном предмете, потом медленно сфокусируйте на близком предмете"
-                timer.innerHTML = "45"
+                timer.innerHTML = midi;
                 break;
             case 6:
                 playSound();
-                document.bgColor = "#C3CDFF";
+                document.bgColor = "#BA68C8";
                 instructions.innerHTML = "7/7. Посидите спокойно с закрытыми глазами"
-                timer.innerHTML = "60"
+                timer.innerHTML = maxi;
                 break;
             case 7:
                 playSound();
-                document.bgColor = "#31B96E";
+                document.bgColor = "#9575CD";
                 instructions.innerHTML = "Вы молодец!"
-                timer.innerHTML = "3"
+                timer.innerHTML = "3";
                 break;
             case 8:
                 window.location.reload();
@@ -175,26 +182,26 @@ function setAudio(num) {
     if (num >= 0 && num <= 4) currentSpeaker = num;
     playSound();
 
-    document.getElementById('sound0').style.fontWeight = "300";
-    document.getElementById('sound1').style.fontWeight = "300";
-    document.getElementById('sound2').style.fontWeight = "300";
-    document.getElementById('sound3').style.fontWeight = "300";
-    document.getElementById('sound4').style.fontWeight = "300";
+    document.getElementById('sound0').className = "button button-outline";
+    document.getElementById('sound1').className = "button button-outline";
+    document.getElementById('sound2').className = "button button-outline";
+    document.getElementById('sound3').className = "button button-outline";
+    document.getElementById('sound4').className = "button button-outline";
     switch (num) {
         case 0:
-            document.getElementById('sound0').style.fontWeight = "900";
+            document.getElementById('sound0').className = "button button-filled";
             break;
         case 1:
-            document.getElementById('sound1').style.fontWeight = "900";
+            document.getElementById('sound1').className = "button button-filled";
             break;
         case 2:
-            document.getElementById('sound2').style.fontWeight = "900";
+            document.getElementById('sound2').className = "button button-filled";
             break;
         case 3:
-            document.getElementById('sound3').style.fontWeight = "900";
+            document.getElementById('sound3').className = "button button-filled";
             break;
         case 4:
-            document.getElementById('sound4').style.fontWeight = "900";
+            document.getElementById('sound4').className = "button button-filled";
             break;
     }
 }
