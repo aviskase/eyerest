@@ -41,10 +41,10 @@ function toggleExerciseView() {
         eyeOfHorus.style.display = "block";
         eyExercise.style.display = "none";
         text.style.display = "block";
-        favicon.setAttribute('href', favicon.href.replace("favicon_alarm", "favicon"));
+        favicon.setAttribute('href', favicon.href.replace("eye_red", "eye"));
     }
     else {
-        favicon.setAttribute('href', favicon.href.replace("favicon", "favicon_alarm"));
+        favicon.setAttribute('href', favicon.href.replace("eye", "eye_red"));
         eyeOfHorus.style.display = "none";
         eyExercise.style.display = "block";
         secondsText.style.display = "none";
@@ -219,7 +219,7 @@ function notifyMe() {
   // Let's check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
-    spawnNotification('Test', './css/favicon.ico', 'TestTitle');
+    spawnNotification();
   }
 
   // Otherwise, we need to ask the user for permission
@@ -227,7 +227,7 @@ function notifyMe() {
     Notification.requestPermission(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        spawnNotification('Test', './css/favicon.ico', 'TestTitle');
+        spawnNotification();
       }
     });
   }
@@ -236,11 +236,11 @@ function notifyMe() {
   // want to be respectful there is no need to bother them any more.
 }
 
-function spawnNotification(theBody,theIcon,theTitle) {
+function spawnNotification() {
   var options = {
-      body: theBody,
-      icon: theIcon
+      body: "",
+      icon: "./css/eye_red.png"
   }
-  var n = new Notification(theTitle,options);
+  var n = new Notification("Пора делать зарядку!", options);
   setTimeout(n.close.bind(n), 5000);
 }
