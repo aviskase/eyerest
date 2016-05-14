@@ -68,6 +68,7 @@ function toggleExerciseView() {
         settings.style.display = "none";
         clearInterval();
         playSound();
+        notifyMe();
         favicTimer = setInterval(blinkFavicon, 1000);
         document.bgColor = "#ecf0f1";
         instructions.innerHTML = "Готовы начать?";
@@ -222,4 +223,39 @@ function intervalChange (interval) {
     minutesLeft = intervalBetween;
     setInterval('updateCountdown()', 1000 * 60 );
     document.getElementById('countdown').innerHTML = minutesLeft;
+}
+
+function notifyMe() {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support system notifications");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    spawnNotification('Test', './css/favicon.ico', 'TestTitle');
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        spawnNotification('Test', './css/favicon.ico', 'TestTitle');
+      }
+    });
+  }
+
+  // Finally, if the user has denied notifications and you
+  // want to be respectful there is no need to bother them any more.
+}
+
+function spawnNotification(theBody,theIcon,theTitle) {
+  var options = {
+      body: theBody,
+      icon: theIcon
+  }
+  var n = new Notification(theTitle,options);
+  setTimeout(n.close.bind(n), 5000);
 }
