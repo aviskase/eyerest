@@ -6,22 +6,6 @@ var mini = 30;              //mini exercise, seconds
 var midi = 45;              //medium exercise, seconds
 var maxi = 60;              //long exercise, seconds
 
-
-function blinkFavicon () {
-  favicon = document.getElementsByTagName ('link') [0];
-  head = document.getElementsByTagName ('head') [0];
-  url1 = './css/favicon.ico';
-  url2 = './css/favicon_alarm.ico';
-  title1 = 'Эй!';
-  title2 = 'Сюда!';
-  document.title = (document.title==title1) ? title2 : title1;
-  // if (favicon.href.indexOf("alarm") != -1) {
-  //   favicon.setAttribute('href', favicon.href.replace("favicon_alarm", "favicon"));
-  // } else {
-  //   favicon.setAttribute('href', favicon.href.replace("favicon", "favicon_alarm"));
-  // }
-}
-
 function load() {
     minutesLeft = intervalBetween;
     setInterval('updateCountdown()', 1000 * 60 );
@@ -51,13 +35,16 @@ function toggleExerciseView() {
     start = document.getElementById('start');
     settings_toggle = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
+    favicon = document.getElementsByTagName ('link') [0];
 
     if(eyeOfHorus.style.display == "none") {
         eyeOfHorus.style.display = "block";
         eyExercise.style.display = "none";
         text.style.display = "block";
+        favicon.setAttribute('href', favicon.href.replace("favicon_alarm", "favicon"));
     }
     else {
+        favicon.setAttribute('href', favicon.href.replace("favicon", "favicon_alarm"));
         eyeOfHorus.style.display = "none";
         eyExercise.style.display = "block";
         secondsText.style.display = "none";
@@ -69,7 +56,6 @@ function toggleExerciseView() {
         clearInterval();
         playSound();
         notifyMe();
-        favicTimer = setInterval(blinkFavicon, 1000);
         document.bgColor = "#ecf0f1";
         instructions.innerHTML = "Готовы начать?";
         timer.innerHTML = "<a id='yes' class='button button-outline button-big' href='javascript:readyToGo()'>Да</a>";
@@ -77,7 +63,6 @@ function toggleExerciseView() {
 }
 
 function readyToGo() {
-    clearInterval(favicTimer);
     document.bgColor = "#FFF176";
     document.getElementById('seconds').style.display = "block";
     document.getElementById('repeatfor').style.display = "block";
