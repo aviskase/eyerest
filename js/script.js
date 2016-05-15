@@ -30,8 +30,6 @@ function toggleExerciseView() {
     instructions = document.getElementById('instructions');
     timer = document.getElementById('timer');
     text = document.getElementById('text');
-    secondsText = document.getElementById('seconds');
-    repeatText = document.getElementById('repeatfor');
     start = document.getElementById('start');
     settings_toggle = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
@@ -47,8 +45,6 @@ function toggleExerciseView() {
         favicon.setAttribute('href', favicon.href.replace("eye", "eye_red"));
         eyeOfHorus.style.display = "none";
         eyExercise.style.display = "block";
-        secondsText.style.display = "none";
-        repeatText.style.display = "none";
         text.style.display = "none";
         start.style.display = "none";
         settings_toggle.style.display = "none";
@@ -64,8 +60,6 @@ function toggleExerciseView() {
 
 function readyToGo() {
     document.bgColor = "#FFF176";
-    document.getElementById('seconds').style.display = "block";
-    document.getElementById('repeatfor').style.display = "block";
     instructions.innerHTML = "1/7. Моргайте быстро-быстро";
     timer.innerHTML = mini;
     // tick timer each sec
@@ -121,7 +115,6 @@ function tickMainTimer() {
                 document.bgColor = "#9575CD";
                 instructions.innerHTML = "Вы молодец!"
                 timer.innerHTML = "3";
-                document.getElementById('repeatfor').style.display = "none";
                 break;
             case 8:
                 window.location.reload();
