@@ -2,9 +2,9 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 30;              //mini exercise, seconds
-var midi = 45;              //medium exercise, seconds
-var maxi = 60;              //long exercise, seconds
+var mini = 2;              //mini exercise, seconds
+var midi = 3;              //medium exercise, seconds
+var maxi = 4;              //long exercise, seconds
 
 function load() {
     minutesLeft = intervalBetween;
@@ -27,8 +27,7 @@ function updateCountdown() {
 function toggleExerciseView() {
     eyeOfHorus = document.getElementById('eyehorus');
     eyExercise = document.getElementById('eyexercise');
-    instructions = document.getElementById('instructions');
-    timer = document.getElementById('timer');
+    readyBlock = document.getElementById('ready');
     text = document.getElementById('text');
     start = document.getElementById('start');
     settings_toggle = document.getElementById('settings-toggle');
@@ -38,13 +37,13 @@ function toggleExerciseView() {
     if(eyeOfHorus.style.display == "none") {
         eyeOfHorus.style.display = "block";
         eyExercise.style.display = "none";
+        readyBlock.style.display = "none";
         text.style.display = "block";
         favicon.setAttribute('href', favicon.href.replace("eye_red", "eye"));
     }
     else {
         favicon.setAttribute('href', favicon.href.replace("eye", "eye_red"));
         eyeOfHorus.style.display = "none";
-        eyExercise.style.display = "block";
         text.style.display = "none";
         start.style.display = "none";
         settings_toggle.style.display = "none";
@@ -53,12 +52,15 @@ function toggleExerciseView() {
         playSound();
         notifyMe();
         document.bgColor = "#ecf0f1";
-        instructions.innerHTML = "Готовы начать?";
-        timer.innerHTML = "<a id='yes' class='button button-outline button-big' href='javascript:readyToGo()'>Да</a>";
+        readyBlock.style.display = "block";
     }
 }
 
 function readyToGo() {
+    readyBlock.style.display = "none";
+    eyExercise.style.display = "block";
+    instructions = document.getElementById('instructions');
+    timer = document.getElementById('timer');
     document.bgColor = "#FFF176";
     instructions.innerHTML = "1/7. Моргайте быстро-быстро";
     timer.innerHTML = mini;

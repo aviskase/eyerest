@@ -22,7 +22,7 @@ body {
     margin-top: 5em;
 }
 
-#eyexercise { display:none; }
+#eyexercise, #ready { display:none; }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
@@ -269,4 +269,20 @@ input[type=range].input-range:focus::-ms-fill-lower {
 }
 input[type=range].input-range:focus::-ms-fill-upper {
   background: #d1e1e8;
+}
+
+
+#timer {
+    margin: 1em auto;
+    max-width: 2.5em;
+    border-radius: 5px;
+    font-weight: 300;
+    text-decoration: none!important;
+    text-align: center;
+    transition: all .3s;
+    padding: 0.5em;
+    font-size: 40px;
+    color: #2c3e50;
+    background-color: transparent;
+    border: 1px solid #2c3e50;
 }
