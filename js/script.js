@@ -2,9 +2,9 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 2;              //mini exercise, seconds
-var midi = 3;              //medium exercise, seconds
-var maxi = 4;              //long exercise, seconds
+var mini = 30;              //mini exercise, seconds
+var midi = 45;              //medium exercise, seconds
+var maxi = 60;              //long exercise, seconds
 
 function load() {
     minutesLeft = intervalBetween;
