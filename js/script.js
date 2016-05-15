@@ -12,6 +12,7 @@ function load() {
     document.getElementById('countdown').innerHTML = minutesLeft;
     document.getElementById('settings').style.display = "none";
     document.getElementById('eyexercise').style.display = "none";
+    document.getElementById('ready').style.display = "none";
 }
 
 function updateCountdown() {
