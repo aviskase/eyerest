@@ -33,7 +33,7 @@ function toggleExerciseView() {
     start = document.getElementById('start');
     settings_toggle = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
-    favicon = document.getElementsByTagName ('link') [0];
+    favicon = document.getElementById('favicon');
 
     if(eyeOfHorus.style.display == "none") {
         eyeOfHorus.style.display = "block";
