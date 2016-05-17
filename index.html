@@ -6,10 +6,10 @@
 	<meta name="Description" content="Регулярные упражнения для глаз при работе за компьютером.">
  	<title>EyeRest</title>
 
-	<link id="favicon" rel="icon" href="./css/eye.ico" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	<script src="./js/script.js"></script>
-	<script src="./js/slider.js"></script>
+	<link id="favicon" rel="icon" href="/css/eye.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/js/script.js"></script>
+	<script src="/js/slider.js"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -24,83 +24,11 @@
 
 <body onload="load()">
 	<div class="container">
-
-			<audio id="speaker_alert" preload="auto">
-				<source src="./sounds/alert.mp3">
-				<source src="./sounds/alert.ogg">
-				<source src="./sounds/alert.wav">
-				<small>Ваш браузер не поддерживает звуки! Ну, это не так важно :)</small>
-			</audio>
-
-			<audio id="speaker_flute" preload="none">
-				<source src="./sounds/alert2.mp3">
-				<source src="./sounds/alert2.ogg">
-				<source src="./sounds/alert2.wav">
-			</audio>
-
-			<audio id="speaker_athmo" preload="none">
-				<source src="./sounds/athmo.mp3">
-				<source src="./sounds/athmo.ogg">
-				<source src="./sounds/athmo.wav">
-			</audio>
-
-			<audio id="speaker_harp" preload="none">
-				<source src="./sounds/harp.mp3">
-				<source src="./sounds/harp.ogg">
-				<source src="./sounds/harp.wav">
-			</audio>
-
-			<audio id="speaker_evilaugh" preload="none">
-				<source src="./sounds/evilaugh.mp3">
-				<source src="./sounds/evilaugh.ogg">
-				<source src="./sounds/evilaugh.wav">
-			</audio>
-
-			<div class="section" id="eye">
-				<h1 id="eyehorus">EyeRest</h1>
-				<div id="ready">
-					<h1>Готовы начать?</h1>
-					<a id='yes' class='button button-outline button-big' href='javascript:readyToGo()'>Да</a>
-				</div>
-				<div id="eyexercise">
-					<div id="timer"></div>
-					<h1 id="instructions"></h1>
-				</div>
-			</div>
-
-			<div class="section" id="text">
-				<p>Зарядка начнётся после того, как прозвучит <a href="javascript:playSound();">вот такой</a> сигнал.</p>
-				<p>Подождите <span id="countdown">52</span> минут.</p>
-			</div>
-
-			<div class="section" id="start">
-			    <a class="button button-filled button-big" href="javascript:toggleExerciseView();">Начать прямо сейчас</a>
-			</div>
-
-			<div class="section" id="settings-toggle" >
-				<a class="button button-outline button-big" href="javascript:toggleSettings()">Настройки</a>
-			</div>
-
-			<div class="section" id="settings">
-				<div>
-    				<label for="notify">Включить уведомления</label>
-					<input type="checkbox" id="notify" name="notify" onchange="javascript:populateStorage();">
-					<br/>
-					<label for="intervalBetween">Интервал между зарядками</label><br/>
-					<input class="input-text" id="intervalBetween" name="intervalBetween" type="number" min="0" value="45" onchange="intervalChange(this)">
-					<br/>
-					<label for="volume">Громкость</label><br/>
-					<input class="input-range" id="volumeSlider" name="volume" onchange="volumeChange(this)" type="range" min="0" max="10" value="10">
-				</div>
-				<div class="button-group">
-					<a class="button button-filled" id="sound0" href="javascript:setAudio(0);">небеса</a>
-					<a class="button button-outline" id="sound1" href="javascript:setAudio(1);">флейта</a>
-					<a class="button button-outline" id="sound2" href="javascript:setAudio(2);">атмо</a>
-					<a class="button button-outline" id="sound3" href="javascript:setAudio(3);">гармоника</a>
-					<a class="button button-outline" id="sound4" href="javascript:setAudio(4);">смех</a>
-				</div>
-			</div>
-
+		<div class="section" id="eye">
+			<h1 id="eyehorus">EyeRest</h1>
+			<a class='button button-outline button-big' href='en/index.html'>EN</a>
+			<a class='button button-outline button-big' href='ru/index.html'>RU</a>
+		</div>
 	</div>
 
 
