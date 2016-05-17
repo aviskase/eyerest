@@ -269,7 +269,7 @@ function notifyMe() {
 function spawnNotification() {
   var options = {
       body: "",
-      icon: "./css/eye_red.png"
+      icon: "../css/eye_red.png"
   }
   var n = new Notification(tr.notification_title[currentLang], options);
   setTimeout(n.close.bind(n), 5000);
