@@ -2,10 +2,11 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 1;              //mini exercise, seconds
-var midi = 2;              //medium exercise, seconds
-var maxi = 3;              //long exercise, seconds
+var mini = 30;              //mini exercise, seconds
+var midi = 45;              //medium exercise, seconds
+var maxi = 60;              //long exercise, seconds
 var notificationsOn = false;
+var currentLang = "en";
 
 function load() {
     if(!localStorage.getItem('interval_time')) {
@@ -16,6 +17,7 @@ function load() {
     }
     minutesLeft = intervalBetween;
     setInterval('updateCountdown()', 1000 * 60 );
+    currentLang = document.documentElement.lang;
     document.getElementById('countdown').innerHTML = minutesLeft;
     document.getElementById('settings').style.display = "none";
     document.getElementById('eyexercise').style.display = "none";
@@ -92,7 +94,7 @@ function readyToGo() {
     instructions = document.getElementById('instructions');
     timer = document.getElementById('timer');
     document.bgColor = "#FFF176";
-    instructions.innerHTML = "1/7. Моргайте быстро-быстро";
+    instructions.innerHTML = tr.ex01[currentLang];
     timer.innerHTML = mini;
     // tick timer each sec
     setInterval('tickMainTimer()', 1000);
@@ -109,43 +111,43 @@ function tickMainTimer() {
             case 1:
                 playSound();
                 document.bgColor = "#FFD54F";
-                instructions.innerHTML = "2/7. Крепко зажмурьтесь на пару секунд, а потом откройте глаза на пару секунд";
+                instructions.innerHTML = tr.ex02[currentLang];
                 timer.innerHTML = mini;
                 break;
             case 2:
                 playSound();
                 document.bgColor = "#FFB74D";
-                instructions.innerHTML = "3/7. Вращайте глазные яблоки, один оборот – по часовой стрелке, другой – против";
+                instructions.innerHTML = tr.ex03[currentLang];
                 timer.innerHTML = midi;
                 break;
             case 3:
                 playSound();
                 document.bgColor = "#FF8A65";
-                instructions.innerHTML = "4/7. Двигайте глазные яблоки вверх-вниз, влево-вправо";
+                instructions.innerHTML = tr.ex04[currentLang];
                 timer.innerHTML = midi;
                 break;
             case 4:
                 playSound();
                 document.bgColor = "#e57373";
-                instructions.innerHTML = "5/7. Легко нажмите на верхнее веко тремя пальцами на пару секунд, потом отпустите на пару секунд"
+                instructions.innerHTML = tr.ex05[currentLang];
                 timer.innerHTML = midi;
                 break;
             case 5:
                 playSound();
                 document.bgColor = "#F06292";
-                instructions.innerHTML = "6/7. Сфокусируйте взгляд на отдаленном предмете, потом медленно сфокусируйте на близком предмете"
+                instructions.innerHTML = tr.ex06[currentLang];
                 timer.innerHTML = midi;
                 break;
             case 6:
                 playSound();
                 document.bgColor = "#BA68C8";
-                instructions.innerHTML = "7/7. Посидите спокойно с закрытыми глазами"
+                instructions.innerHTML = tr.ex07[currentLang];
                 timer.innerHTML = maxi;
                 break;
             case 7:
                 playSound();
                 document.bgColor = "#9575CD";
-                instructions.innerHTML = "Вы молодец!"
+                instructions.innerHTML = tr.congrats[currentLang];
                 timer.innerHTML = "3";
                 break;
             case 8:
@@ -269,7 +271,7 @@ function spawnNotification() {
       body: "",
       icon: "./css/eye_red.png"
   }
-  var n = new Notification("Пора делать зарядку!", options);
+  var n = new Notification(tr.notification_title[currentLang], options);
   setTimeout(n.close.bind(n), 5000);
 }
 
@@ -286,3 +288,43 @@ function storageAvailable(type) {
         return false;
     }
 }
+
+
+var tr = {
+    notification_title: {
+        en: "It's time for a break!",
+        ru: "Пора делать зарядку!"
+    },
+    ex01: {
+        en: "1/7. Blink rapidly",
+        ru: "1/7. Моргайте быстро-быстро"
+    },
+    ex02: {
+        en: "2/7. Close eyes tightly for few seconds, open them for few seconds",
+        ru: "2/7. Крепко зажмурьтесь на пару секунд, а потом откройте глаза на пару секунд"
+    },
+    ex03: {
+        en: "3/7. Roll your eyes clockwise, then counter-clockwise",
+        ru: "3/7. Вращайте глазные яблоки, один оборот – по часовой стрелке, другой – против"
+    },
+    ex04: {
+        en: "4/7. Move your eyes up-down, left-right",
+        ru: "4/7. Двигайте глазные яблоки вверх-вниз, влево-вправо"
+    },
+    ex05: {
+        en: "5/7. Lightly press three fingers of each hand against your upper eyelids, hold for few seconds, release",
+        ru: "5/7. Легко нажмите на верхнее веко тремя пальцами на пару секунд, потом отпустите на пару секунд"
+    },
+    ex06: {
+        en: "6/7. Focus on a distant object for few seconds. Then, slowly refocus on a nearby object",
+        ru: "6/7. Сфокусируйте взгляд на отдаленном предмете, потом медленно сфокусируйте на близком предмете"
+    },
+    ex07: {
+        en: "7/7. Sit for a while with your eyes closed",
+        ru: "7/7. Посидите спокойно с закрытыми глазами"
+    },
+    congrats: {
+        en: "You are awesome!",
+        ru: "Вы молодец!"
+    }
+};
