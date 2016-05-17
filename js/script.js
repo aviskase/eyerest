@@ -2,18 +2,43 @@ var minutesLeft;
 var step = 1;
 var currentSpeaker = 0;     //default alarm sound
 var intervalBetween = 45;   //default interval, minutes
-var mini = 30;              //mini exercise, seconds
-var midi = 45;              //medium exercise, seconds
-var maxi = 60;              //long exercise, seconds
+var mini = 1;              //mini exercise, seconds
+var midi = 2;              //medium exercise, seconds
+var maxi = 3;              //long exercise, seconds
 var notificationsOn = false;
 
 function load() {
+    if(!localStorage.getItem('interval_time')) {
+        populateStorage();
+    } else {
+        setSettings();
+        intervalBetween = localStorage.getItem('interval_time')
+    }
     minutesLeft = intervalBetween;
     setInterval('updateCountdown()', 1000 * 60 );
     document.getElementById('countdown').innerHTML = minutesLeft;
     document.getElementById('settings').style.display = "none";
     document.getElementById('eyexercise').style.display = "none";
     document.getElementById('ready').style.display = "none";
+}
+
+function populateStorage() {
+  localStorage.setItem('interval_time', document.getElementById('intervalBetween').value);
+  localStorage.setItem('volume', document.getElementById('volumeSlider').value);
+  localStorage.setItem('sound', currentSpeaker);
+  localStorage.setItem('notificationsOn', document.getElementById('notify').checked);
+}
+
+function setSettings() {
+  var intervalSet = localStorage.getItem('interval_time');
+  var volumeSet = localStorage.getItem('volume');
+  var soundSet = localStorage.getItem('sound');
+  var notifySet = localStorage.getItem('notificationsOn');
+
+  document.getElementById('intervalBetween').value = intervalSet;
+  document.getElementById('volumeSlider').value = volumeSet;
+  currentSpeaker = soundSet;
+  document.getElementById('notify').checked = notifySet;
 }
 
 function updateCountdown() {
@@ -170,6 +195,7 @@ function toggleSettings() {
 function setAudio(num) {
     if (num >= 0 && num <= 4) currentSpeaker = num;
     playSound();
+    populateStorage();
 
     document.getElementById('sound0').className = "button button-outline";
     document.getElementById('sound1').className = "button button-outline";
@@ -201,6 +227,7 @@ function volumeChange (slider) {
     document.getElementById('speaker_athmo').volume = slider.value/10;
     document.getElementById('speaker_harp').volume = slider.value/10;
     document.getElementById('speaker_evilaugh').volume = slider.value/10;
+    populateStorage();
 }
 
 function intervalChange (interval) {
@@ -208,6 +235,7 @@ function intervalChange (interval) {
     minutesLeft = intervalBetween;
     setInterval('updateCountdown()', 1000 * 60 );
     document.getElementById('countdown').innerHTML = minutesLeft;
+    populateStorage();
 }
 
 function notifyMe() {
@@ -243,4 +271,18 @@ function spawnNotification() {
   }
   var n = new Notification("Пора делать зарядку!", options);
   setTimeout(n.close.bind(n), 5000);
+}
+
+
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return false;
+    }
 }
