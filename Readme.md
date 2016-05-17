@@ -11,7 +11,7 @@ At first, this site was really just a rip-off :grin:, but I plan to update it an
 * Web notifications
 * Web notifications opt-in
 * Russian and English interface
-* Saving settings somewhere
+* Saving settings in local storage
 
 ### Dev Notes
 Icons are made with Inkscape (svg is in the repo) and exported as png files. To convert from png to ico:
