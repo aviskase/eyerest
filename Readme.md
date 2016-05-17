@@ -8,11 +8,10 @@ At first, this site was really just a rip-off :grin:, but I plan to update it an
 - [x] Custom intervals between exercises
 - [x] Volume slider
 - [x] Sound picker
-- [ ] Sound opt-out
 - [x] Web notifications
-- [ ] Web notification opt-out
+- [x] Web notification opt-in
 - [ ] Russian and English interface
-- [ ] Saving settings somewhere
+- [x] Saving settings somewhere
 
 ### Dev Notes
 Icons are made with Inkscape (svg is in the repo) and exported as png files. To convert from png to ico:
