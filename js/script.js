@@ -5,6 +5,7 @@ var intervalBetween = 45;   //default interval, minutes
 var mini = 30;              //mini exercise, seconds
 var midi = 45;              //medium exercise, seconds
 var maxi = 60;              //long exercise, seconds
+var notificationsOn = false;
 
 function load() {
     minutesLeft = intervalBetween;
@@ -34,6 +35,7 @@ function toggleExerciseView() {
     settings_toggle = document.getElementById('settings-toggle');
     settings = document.getElementById('settings');
     favicon = document.getElementById('favicon');
+    notificationsOn = document.getElementById('notify').checked;
 
     if(eyeOfHorus.style.display == "none") {
         eyeOfHorus.style.display = "block";
@@ -51,7 +53,9 @@ function toggleExerciseView() {
         settings.style.display = "none";
         clearInterval();
         playSound();
-        notifyMe();
+        if (notificationsOn) {
+            notifyMe();
+        }
         document.bgColor = "#ecf0f1";
         readyBlock.style.display = "block";
     }
